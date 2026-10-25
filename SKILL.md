@@ -81,11 +81,13 @@ The gate applies at every size.
 
 ### 1. Discover
 
-Inspect existing code and documentation before drafting. Identify every direct upstream, downstream, referencing, and related document; where this project stores its model documents; the source of truth for each model fact; every namespace in use, every external name the project does not control, and every project-controlled name that violates its namespace convention; and every finite-domain field.
+Inspect existing code and documentation before drafting. Identify every direct upstream, downstream, referencing, and related document; where this project stores its model documents; the source of truth for each model fact; the naming styles in the affected namespaces, external names the project does not control, and variables to be introduced or renamed; and every finite-domain field.
+
+Before introducing or renaming variables, ask the user which naming convention to use unless they have already specified one. Recommend following the existing style in the relevant part of the repository.
 
 Never speculate about a fact that affects model output, trading interpretation, fallback behavior, or reproducibility. Ask the user instead, and ask before implementing rather than after. For a fact outside that set, supply a default as `PROPOSED` rather than interrupting.
 
-**Complete when:** every model fact is marked as fact, `PROPOSED`, or `TBD`; every output-affecting uncertainty has been asked rather than assumed; and every direct document relationship, namespace, external name, naming exception, and finite-domain field has been identified.
+**Complete when:** every model fact is marked as fact, `PROPOSED`, or `TBD`; every output-affecting uncertainty has been asked rather than assumed; every direct document relationship, affected namespace, external name, and finite-domain field has been identified; and the user has specified a naming convention for any variables to be introduced or renamed.
 
 ### 2. Document
 
@@ -101,7 +103,7 @@ Mark every fact in one of three states:
 
 Never present a proposed value as a fact. A `PROPOSED` entry without a reason is not valid.
 
-**Complete when:** every applicable section is populated, every finite domain has a complete contract, every project-controlled name follows its namespace convention or has a user-approved exception, and every cross-namespace concept has a Name Mapping entry.
+**Complete when:** every applicable section is populated, every finite domain has a complete contract, every new or renamed project-controlled variable follows the user-selected convention, and every cross-namespace concept has a Name Mapping entry.
 
 ### 3. Builder check
 
@@ -164,7 +166,7 @@ The document has eleven sections. Full field contracts, tables, and templates ar
 `scripts/check_doc.py` has already decided the mechanical items. Verify these by reading:
 
 - Every direct document relationship is in Document Topology, and every editable related document has a reciprocal link.
-- Every model concept has one authoritative name; every project-controlled name follows its namespace convention; every cross-namespace concept and every external name appears in the Name Mapping table; and every exception has explicit user approval.
+- Every model concept has one authoritative name; every new or renamed project-controlled variable follows the user-selected convention; and every cross-namespace concept and every external name appears in the Name Mapping table.
 - Every finite-domain field declares its complete allowed values and handling for null, empty, invalid, unknown, deprecated, and future values; every open domain has a validation rule.
 - Formulas, time boundaries, calibration rules, and fallback behavior are supported by evidence or marked `TBD`.
 - No unresolved fact is written plainly as a fact, and no proposed value is presented as a settled one.

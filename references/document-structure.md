@@ -78,22 +78,12 @@ Use LaTeX-style notation when useful.
 
 #### Naming Contract
 
-Each concept carries one authoritative name. Each namespace renders that name in its own convention.
-
-| Namespace | Convention | Example |
-|---|---|---|
-| This document: field names, model parameters, statuses, diagnostics, metrics | `camelCase` | `asOfDate`, `moneynessBucket` |
-| Configuration keys, JSON/API properties, artifact identifiers | `camelCase` | `minObservations` |
-| Python symbols: variables, functions, methods, dataframe columns | `snake_case` | `as_of_date` |
-| Math symbols in formulas | conventional notation, defined on first use | $\sigma_{atm}$ |
-| Display labels in charts and reports | human-readable | ATM implied vol |
+Record the user-selected naming convention for each affected namespace. Apply it to new or renamed variables. Preserve existing identifiers when documenting unchanged code, and retain external interface and data-source names verbatim.
 
 - Use one authoritative concept name across formulas, code, configuration, data, artifacts, and display labels. Rendering that name in a namespace's own convention is not an alias.
 - Provide a Name Mapping table for every concept that appears in more than one namespace. Translation must be mechanical: `asOfDate` ↔ `as_of_date` ↔ $t_0$ ↔ "As-of date".
 - Define abbreviations, units, and suffixes consistently. Do not introduce an undeclared alias.
-- Names originating outside the project — vendor feed columns, exchange fields, upstream schemas — are not project-controlled. Do not rename them at the boundary; record them verbatim in the Name Mapping table beside the project name.
-- A project-controlled name that violates its own namespace convention requires prior user approval. State the exact name, namespace, reason, proposed alternative, and impact. Until approved, record `TBD — naming exception requires user approval`.
-- Legacy project names and framework preferences grant no automatic exception. Host-language conventions are already encoded in the table above and need no exception.
+- Record external names — vendor feed columns, exchange fields, upstream schemas — in the Name Mapping table beside the corresponding project names.
 
 ## 5. Calibration or Fitting Procedure
 
